@@ -2,12 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import Cors from "cors";
 import Cards from "./dbCards.js";
-
+mongoose.set("strictQuery", true);
 //App Config
 const app = express();
 const port = process.env.PORT || 8001;
 const connection_url =
-  "mongodb+srv://tinderApi:YfNumQYkgMJbyRCS@tinder.16iblmc.mongodb.net/tinder?retryWrites=true&w=majority";
+  "mongodb+srv://tinderApi:YfNumQYkgMJbyRCS@tinder.16iblmc.mongodb.net/tinder?retryWrites=true&w=majority" ||
+  process.env.MONGO_URL;
 
 //Middlewares
 app.use(express.json());
@@ -20,7 +21,7 @@ mongoose.connect(connection_url, {
 });
 
 //API Endpoints
-app.get("/", (req, res) => res.status(200).send("Hi"));
+app.get("/", (req, res) => res.status(200).send("FINALLLY GUYZ"));
 
 app.post("/tinder/cards", (req, res) => {
   const dbCard = req.body;
