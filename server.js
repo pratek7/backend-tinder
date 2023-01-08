@@ -8,7 +8,7 @@ mongoose.set("strictQuery", true);
 dotenv.config({ path: "./.env" });
 //App Config
 const app = express();
-const port = process.env.PORT || 8001;
+const port = process.env.PORT || process.env.PORTS;
 
 //Middlewares
 app.use(express.json());
@@ -50,4 +50,4 @@ app.get("/tinder/cards", (req, res) => {
 });
 
 //Listner
-app.listen(port, () => console.log(`Listening on localhost: ${port}`));
+app.listen(process.env.PORTS, () => console.log(`Listening on localhost: ${process.env.PORTS}`));
