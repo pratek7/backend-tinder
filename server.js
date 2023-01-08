@@ -2,27 +2,22 @@ import express from "express";
 import mongoose from "mongoose";
 import Cors from "cors";
 import Cards from "./dbCards.js";
-import dotenv from "dotenv";
 mongoose.set("strictQuery", true);
-
-dotenv.config({ path: "./.env" });
 //App Config
 const app = express();
+const port = process.env.PORT || 8001;
+const connection_url =
+  "mongodb+srv://tinderApi:YfNumQYkgMJbyRCS@tinder.16iblmc.mongodb.net/tinder?retryWrites=true&w=majority";
 
 //Middlewares
 app.use(express.json());
 app.use(Cors());
 
 //DB Config
-mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then((con) => {
-    // console.log(con.connections);
-    console.log("DB connection successful");
-  });
+mongoose.connect(connection_url, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 //API Endpoints
 app.get("/", (req, res) => res.status(200).send("FINALLLY GUYZ"));
@@ -49,8 +44,4 @@ app.get("/tinder/cards", (req, res) => {
 });
 
 //Listner
-app.listen(process.env.PORTS, () =>
-  console.log(`Listening on localhost: ${process.env.PORTS}`)
-);
-
-export default app;
+app.listen(port, () => console.log(`Listening on localhost: ${port}`));
