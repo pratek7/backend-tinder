@@ -11,6 +11,11 @@
       "src": "/(.*)",
 
       "dest": "server.js"
+    },
+    {
+      "buildCommand": "next build",
+      "cleanUrls": true,
+      "devCommand": "next dev"
     }
   ]
 }

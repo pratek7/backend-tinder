@@ -8,7 +8,6 @@ mongoose.set("strictQuery", true);
 dotenv.config({ path: "./.env" });
 //App Config
 const app = express();
-const port = process.env.PORT || process.env.PORTS;
 
 //Middlewares
 app.use(express.json());
@@ -21,7 +20,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((con) => {
-    console.log(con.connections);
+    // console.log(con.connections);
     console.log("DB connection successful");
   });
 
@@ -50,4 +49,8 @@ app.get("/tinder/cards", (req, res) => {
 });
 
 //Listner
-app.listen(process.env.PORTS, () => console.log(`Listening on localhost: ${process.env.PORTS}`));
+app.listen(process.env.PORTS, () =>
+  console.log(`Listening on localhost: ${process.env.PORTS}`)
+);
+
+export default app;
